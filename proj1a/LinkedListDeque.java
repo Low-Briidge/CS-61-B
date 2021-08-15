@@ -9,20 +9,20 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        size = other.size();
-        sentinel = new Node();
-        sentinel.prev = sentinel;
-        sentinel.next = sentinel;
-        for (int i = 0; i < size; i++) {
-            this.addLast((T) other.get(i));
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        size = other.size();
+//        sentinel = new Node();
+//        sentinel.prev = sentinel;
+//        sentinel.next = sentinel;
+//        for (int i = 0; i < size; i++) {
+//            this.addLast((T) other.get(i));
+//        }
+//    }
 
-    public class Node {
-        Node prev;
-        T item;
-        Node next;
+    private class Node {
+        private Node prev;
+        private T item;
+        private Node next;
     }
 
     public void addFirst(T item) {
@@ -70,7 +70,7 @@ public class LinkedListDeque<T> {
         size -= 1;
         T res = sentinel.next.item;
         sentinel.next = sentinel.next.next;
-        sentinel.next = sentinel;
+        sentinel.next.prev = sentinel;
         return res;
     }
 
@@ -80,7 +80,7 @@ public class LinkedListDeque<T> {
         }
         size -= 1;
         Node last = sentinel.prev;
-        T res = sentinel.next.item;
+        T res = sentinel.prev.item;
         last.prev.next = sentinel;
         sentinel.prev = last.prev;
         last.prev = null;
@@ -99,17 +99,17 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
-    public Node RecursiveHelp(Node p, int index) {
+    public Node recursiveHelp(Node p, int index) {
         if (index == 0) {
             return p;
         }
-        return RecursiveHelp(p.next, index - 1);
+        return recursiveHelp(p.next, index - 1);
     }
 
     public T getRecursive(int index) {
         if (index + 1 > size) {
             return null;
         }
-        return RecursiveHelp(sentinel.next, index).item;
+        return recursiveHelp(sentinel.next, index).item;
     }
 }
