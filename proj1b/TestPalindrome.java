@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestPalindrome {
@@ -13,10 +14,12 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("12365456321"));
         assertTrue(palindrome.isPalindrome("abcba"));
     }
+
     @Test
     public void testIsPalindrome2() {
         assertTrue(palindrome.isPalindrome("flake", obj));
     }
+
     @Test
     public void testWordToDeque() {
         Deque d = palindrome.wordToDeque("persiflage");

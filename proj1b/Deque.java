@@ -1,14 +1,21 @@
 public interface Deque<T> {
     public boolean isEmpty();
+
     public int size();
+
     public void addFirst(T item);
+
     public void addLast(T item);
+
     public T removeFirst();
+
     public T removeLast();
+
     public T get(int index);
+
     public void printDeque();
 
-    public class ArrayDeque<T> implements Deque<T>{
+    public class ArrayDeque<T> implements Deque<T> {
         private Array items;
         private int capacity;
         private int size;
@@ -31,7 +38,7 @@ public interface Deque<T> {
             size = 0;
         }
 
-//    public ArrayDeque(ArrayDeque other) {
+        //    public ArrayDeque(ArrayDeque other) {
 //        items.item = (T[]) new Object[other.capacity];
 //        size = other.size;
 //        capacity = other.capacity;
@@ -151,7 +158,8 @@ public interface Deque<T> {
 
 
     }
-    public class LinkedListDeque<T> implements Deque<T>{
+
+    public class LinkedListDeque<T> implements Deque<T> {
         private Node sentinel;
         private int size;
 
