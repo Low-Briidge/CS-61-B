@@ -1,56 +1,53 @@
 import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestArrayDequeGold {
     StudentArrayDeque<Integer> actual = new StudentArrayDeque<>();
     ArrayDequeSolution<Integer> ans = new ArrayDequeSolution<>();
 
     @Test
     public void randomTest() {
-        for (int i = 0; i < 100; i++) {
-            int rand = StdRandom.uniform(0, 8);
-            if (rand == 0) {
-                actual.addFirst(i);
-                ans.addFirst(i);
-                assertEquals("addFirst(" + i + ")", ans.get(0), actual.get(0));
-            }
-            else if (rand == 1) {
-                actual.addLast(i);
-                ans.addLast(i);
-                assertEquals("addLast(" + i + ")", ans.getLast(), actual.get(actual.size() - 1));
-            }
-            else if (rand == 2) {
-                if (ans.size() == 0)
-                    continue;
-                Integer x1 = actual.removeFirst();
-                Integer x2 = ans.removeFirst();
-                assertEquals("removeFirst()" + i, x2, x1);
-            }
-            else if (rand == 3){//call removeLast()
-                if (ans.size() == 0)
-                    continue;
-                Integer x1 = actual.removeLast();
-                Integer x2 = ans.removeFirst();
-                System.out.println();
-                assertEquals("removeLast()", x2, x1);
-            }
-            else if (rand == 4) {
-                continue;
-            }
-            else if (rand == 5) {
-                assertEquals("isEmpty()", ans.isEmpty(), actual.isEmpty());
-            }
-            else if (rand == 6) {
-                assertEquals("size()", ans.size(), actual.size());
-            }
-            else if (rand == 7) {
-                if (ans.size() <= 0)
-                    continue;
-                int rand2 = StdRandom.uniform(0, ans.size());
-                int x1 = actual.get(rand2);
-                int x2 = ans.get(rand2);
-                assertEquals("get(" + rand2 + ")", x2, x1);
-            }
+        //addFirst
+        for (int i = 0; i < 10; i++) {
+            int rand = StdRandom.uniform(0, 100);
+            ans.addFirst(rand);
+            actual.addFirst(rand);
+        }
+        for (int i = 0; i < 10; i++) {
+            assertEquals("addFirst(" + ans.get(i) + ")", ans.get(i), actual.get(i));
+        }
+
+        //addLast
+        for (int i = 0; i < 10; i++) {
+            int rand = StdRandom.uniform(0, 100);
+            ans.addLast(rand);
+            actual.addLast(rand);
+        }
+        for (int i = 10; i < 20; i++) {
+            assertEquals("addLast(" + ans.get(i) + ")", ans.get(i), actual.get(i));
+        }
+
+        List<Integer> lst1 = new ArrayList<>();
+        List<Integer> lst2 = new ArrayList<>();
+        //removeFirst
+        for (int i = 0; i < 10; i++) {
+            lst1.add(ans.removeFirst());
+            lst2.add(actual.removeFirst());
+        }
+        for (int i = 0; i < 10; i++) {
+            assertEquals("removeFirst()", lst1.get(i), lst2.get(i));
+        }
+        lst1.clear();
+        lst2.clear();
+        //removeLast
+        for (int i = 0; i < 10; i++) {
+            lst1.add(ans.removeLast());
+            lst2.add(actual.removeLast());
+            assertEquals("removeLast()", lst1.get(i), lst2.get(i));
         }
     }
 }
