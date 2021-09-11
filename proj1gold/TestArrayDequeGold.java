@@ -44,7 +44,7 @@ public class TestArrayDequeGold {
                 assertEquals("size()", ans.size(), actual.size());
             }
             else if (rand == 7) {
-                if (ans.size() < 0)
+                if (ans.size() <= 0)
                     continue;
                 int rand2 = StdRandom.uniform(0, ans.size());
                 int x1 = actual.get(rand2);
